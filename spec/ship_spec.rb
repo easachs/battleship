@@ -5,5 +5,7 @@ RSpec.describe Ship do
     cruiser = Ship.new("Cruiser", 3)
   end
 
-  
+  it "is sunk?" do
+    sunk = Ship.new("Cruiser", 0)
+  end
 end

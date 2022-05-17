@@ -6,4 +6,8 @@ class Ship
     @length = length
     @health = length
   end
+
+  def sunk? (sunk)
+    @health == 0
+  end
 end
