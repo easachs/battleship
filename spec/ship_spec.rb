@@ -1,42 +1,41 @@
 require './lib/ship.rb'
 
 RSpec.describe Ship do
-
-  it 'exists' do
-    cruiser = Ship.new("Cruiser", 3)
-    expect(cruiser).to be_instance_of(Ship)
-  end
-
+  
+  cruiser = Ship.new("Cruiser", 3)
+  
+  it "is a Ship" do
+     expect(cruiser.class).to be(Ship)
+   end
+  
   it "has a name" do
-    cruiser = Ship.new("Cruiser", 3)
-    name = Ship.new("Cruiser", 3)
     expect(cruiser.name).to eq("Cruiser")
   end
 
   it "has a length" do
-    cruiser = Ship.new("Cruiser", 3)
     expect(cruiser.length).to eq(3)
   end
 
   it 'has health' do
-    cruiser = Ship.new("Cruiser", 3)
     expect(cruiser.health).to eq(3)
   end
 
-  it "is sunk" do
-    cruiser = Ship.new("Cruiser", 3)
-    expect(cruiser.sunk?).to eq(false)
+  it "has sunk?" do
+    expect(cruiser.sunk?).to be(false)
   end
 
-  it "when hit" do
-    cruiser = Ship.new("Cruiser", 3)
+  it "can be hit" do
     cruiser.hit
     expect(cruiser.health).to eq(2)
+    expect(cruiser.sunk?).to be(false) 
+  end 
+  
+  it "can be sunk" do
     cruiser.hit
     expect(cruiser.health).to eq(1)
-    expect(cruiser.sunk?).to eq(false)
+    expect(cruiser.sunk?).to be(false)
     cruiser.hit
-    expect(cruiser.sunk?).to eq(true)
+    expect(cruiser.sunk?).to be(true)
   end
 
 end
