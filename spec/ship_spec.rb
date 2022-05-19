@@ -1,13 +1,13 @@
 require './lib/ship.rb'
 
 RSpec.describe Ship do
-  
+
   cruiser = Ship.new("Cruiser", 3)
-  
+
   it "is a Ship" do
      expect(cruiser.class).to be(Ship)
    end
-  
+
   it "has a name" do
     expect(cruiser.name).to eq("Cruiser")
   end
@@ -27,9 +27,9 @@ RSpec.describe Ship do
   it "can be hit" do
     cruiser.hit
     expect(cruiser.health).to eq(2)
-    expect(cruiser.sunk?).to be(false) 
-  end 
-  
+    expect(cruiser.sunk?).to be(false)
+  end
+
   it "can be sunk" do
     cruiser.hit
     expect(cruiser.health).to eq(1)
