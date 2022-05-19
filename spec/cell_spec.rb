@@ -6,7 +6,7 @@ RSpec.describe Cell do
   describe "initialize" do
 
     cell = Cell.new("B4")
-    
+
     it "exists" do
       expect(cell).to be_instance_of(Cell)
     end
@@ -82,3 +82,4 @@ RSpec.describe Cell do
       expect(cell_2.render).to eq("X")
     end
   end
+end
