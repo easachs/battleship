@@ -2,7 +2,7 @@ class Cell
 
   attr_reader :coordinate, :ship
 
-  def initialize(coordinate)
+  def initialize (coordinate)
     @coordinate = coordinate.to_s
     @ship = nil
     @fired_upon = false
@@ -28,6 +28,7 @@ class Cell
   end
 
   def render(status = false)
+
     if status == true
       if !empty?
         if @ship.sunk?

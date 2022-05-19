@@ -3,46 +3,38 @@ require './lib/cell'
 
 RSpec.describe Cell do
 
-  describe "#initialize" do
+  describe "initialize" do
 
     cell = Cell.new("B4")
-
-    it "it a cell" do
-      expect(cell.class).to eq(Cell)
+    
+    it "exists" do
+      expect(cell).to be_instance_of(Cell)
     end
 
-    it "has coordinates" do
+    it "has coordinate" do
       expect(cell.coordinate).to eq("B4")
     end
 
-    it "can check for ships" do
-      expect(cell.ship).to be nil
+    it "has a cell ship" do
+      expect(cell.ship).to be_nil
     end
 
-    it "can check if empty" do
-      expect(cell.empty?).to be true
+    it "has empty? method" do
+      expect(cell.empty?).to eq(true)
     end
 
-    it "can place a ship" do
+    it "can place ship" do
       cruiser = Ship.new("Cruiser", 3)
       cell.place_ship(cruiser)
       expect(cell.ship).to eq(cruiser)
     end
 
-    it "can check if not empty" do
-      expect(cell.empty?).to be false
+    it "can be not empty" do
+      expect(cell.empty?).to be(false)
     end
-  end
 
-
-  describe "#fired upon" do
-
-    cell = Cell.new("B4")
-    cruiser = Ship.new("Cruiser", 3)
-    cell.place_ship(cruiser)
-
-    it "can check if fired upon" do
-      expect(cell.fired_upon?).to be false
+    it "can check fired_upon?" do
+      expect(cell.fired_upon?).to be(false)
     end
 
     it "can be fired upon" do
@@ -52,8 +44,7 @@ RSpec.describe Cell do
     end
   end
 
-
-  describe "#render" do
+  describe "render" do
 
     cell_1 = Cell.new("B4")
 
@@ -70,11 +61,11 @@ RSpec.describe Cell do
     cruiser = Ship.new("Cruiser", 3)
     cell_2.place_ship(cruiser)
 
-    it "can render a blank for a cell with a ship" do
+    it "can render . for a cell with a ship" do
       expect(cell_2.render).to eq(".")
     end
 
-    it "can render true to reveal a ship" do
+    it "can render(true) to reveal a ship" do
       expect(cell_2.render(true)).to eq("S")
     end
 
@@ -91,5 +82,3 @@ RSpec.describe Cell do
       expect(cell_2.render).to eq("X")
     end
   end
-
-end
