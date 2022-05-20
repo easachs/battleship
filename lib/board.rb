@@ -4,9 +4,8 @@ class Board
   attr_reader :cells
 
     def initialize
-      @rows = ["A","B","C","D"]
-      @columns = [1, 2, 3, 4]
-
+      # @rows = ["A","B","C","D"]
+      # @columns = [1, 2, 3, 4]
       @cells = {
         "A1" => Cell.new("A1"),
         "A2" => Cell.new("A2"),
@@ -23,7 +22,8 @@ class Board
         "D1" => Cell.new("D1"),
         "D2" => Cell.new("D2"),
         "D3" => Cell.new("D3"),
-        "D4" => Cell.new("D4"),
+        "D4" => Cell.new("D4")
+
       }
     end
 
@@ -32,25 +32,41 @@ class Board
     end
 
     def valid_placement?(ship, ship_coordinates)
+
+      # equal number of coordinates/ship length?
       correct_length = ship_coordinates.length == ship.length
+
       coordinate_pairs = ship_coordinates.each_cons(2)
-
-      consecutive_rows = coordinate_pairs.all? do |coordinate_pair|
-        coordinate_pair[0][0] == coordinate_pair[1][0] && coordinate_pair[0][1].to_i + 1 == coordinate_pair[1][1].to_i
+      # is ship on consecutive rows?
+      consecutive_rows = coordinate_pairs.all? do |pair|
+        pair[0][0] == pair[1][0] &&
+        pair[0][1].to_i + 1 == pair[1][1].to_i
       end
-
-      consecutive_columns = coordinate_pairs.all? do |pair| do|coordinate|
+      # is ship on consecutive columns?
+      consecutive_columns = coordinate_pairs.all? do |pair|
+        pair[0][0].ord + 1 == pair[1][0].ord &&
+        pair[0][1] == pair[1][1]
+      end
+      # invalid if ship not on board
+      valid_coordinates = ship_coordinates.all? do |coordinate|
         valid_coordinate?(coordinate)
       end
-
-      overlap =
-      correct_length && valid_coordinates && (consecutive_rows || consecutive_columns)
+      # do ships overlap?
+      overlap = @cells.count do |k,v|
+        v.ship != nil
       end
 
+      correct_length && valid_coordinates && overlap == 0 &&
+      (consecutive_rows || consecutive_columns)
+    end
 
-    def place(ship, coordinates)
-      coordinates.map do|coordinate|
-        @cells[coordinate].place_ship(ship)
+    def place(ship, ship_coordinates)
+      if valid_placement?(ship, ship_coordinates)
+        ship_coordinates.each do|coordinate|
+          @cells[coordinate].place_ship(ship)
+        end
+      else
+        nil
       end
     end
 
