@@ -38,6 +38,8 @@ RSpec.describe Board do
     end
 
     it "can invalidate ship placement (non-consecutive columns)" do
+      require "pry";binding.pry
+
       expect(board.valid_placement?(cruiser, ["A1", "A2", "A4"])).to be false
       expect(board.valid_placement?(submarine, ["A1", "C1"])).to be false
       expect(board.valid_placement?(cruiser, ["A3", "A2", "A1"])).to be false
@@ -58,20 +60,20 @@ RSpec.describe Board do
       expect(board.valid_placement?(submarine, ["C2", "C1"])).to be false
     end
 
-    it "can validate ship placement (consecutive rows)" do
+    xit "can validate ship placement (consecutive rows)" do
       expect(board.valid_placement?(submarine, ["B1", "C1"])).to be true
       expect(board.valid_placement?(cruiser, ["A3", "B3", "C3"])).to be true
       expect(board.valid_placement?(submarine, ["C2", "D2"])).to be true
       expect(board.valid_placement?(cruiser, ["B1", "C1", "D1"])).to be true
     end
 
-    it "can invalidate ship placement (no diagonals)" do
+    xit "can invalidate ship placement (no diagonals)" do
       expect(board.valid_placement?(cruiser, ["A1", "B2", "C3"])).to be false
       expect(board.valid_placement?(submarine, ["C2", "D3"])).to be false
       expect(board.valid_placement?(cruiser, ["B2", "C3", "D4"])).to be false
     end
 
-    it "can invalidate ship placement (backwards/duplicate coordinates)" do
+    xit "can invalidate ship placement (backwards/duplicate coordinates)" do
       expect(board.valid_placement?(cruiser, ["C3", "B2", "A1"])).to be false
       expect(board.valid_placement?(submarine, ["A1", "A1"])).to be false
       expect(board.valid_placement?(cruiser, ["D2", "C3", "B4"])).to be false
@@ -80,7 +82,7 @@ RSpec.describe Board do
       expect(board.valid_placement?(cruiser, ["A3", "B3", "B3", "C3"])).to be false
     end
 
-    it "can invalidate off-board ship placement" do
+    xit "can invalidate off-board ship placement" do
       expect(board.valid_placement?(submarine, ["D4", "D5"])).to be false
       expect(board.valid_placement?(cruiser, ["C3", "D3", "E3"])). to be false
     end
@@ -101,7 +103,7 @@ RSpec.describe Board do
       expect(cell_3.ship).to eq(cell_2.ship)
     end
 
-    it "can invalidate/deny overlapping ship placement" do
+    xit "can invalidate/deny overlapping ship placement" do
       # board.place(cruiser, ["A1", "A2", "A3"])
       submarine = Ship.new("Submarine", 2)
       expect(board.valid_placement?(submarine, ["A1", "B1"])).to be false
