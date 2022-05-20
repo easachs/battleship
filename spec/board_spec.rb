@@ -103,8 +103,8 @@ RSpec.describe Board do
       expect(cell_3.ship).to eq(cell_2.ship)
     end
 
-    xit "can invalidate/deny overlapping ship placement" do
-      # board.place(cruiser, ["A1", "A2", "A3"])
+    it "can invalidate/deny overlapping ship placement" do
+      board.place(cruiser, ["A1", "A2", "A3"])
       submarine = Ship.new("Submarine", 2)
       expect(board.valid_placement?(submarine, ["A1", "B1"])).to be false
       expect(board.place(submarine, ["A1", "B2"])).to be nil

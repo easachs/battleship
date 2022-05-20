@@ -23,7 +23,10 @@ class Board
         "D2" => Cell.new("D2"),
         "D3" => Cell.new("D3"),
         "D4" => Cell.new("D4")
+<<<<<<< HEAD
 
+=======
+>>>>>>> a2c071de029a1c7830c3449f9daa19d821a71572
       }
     end
 
