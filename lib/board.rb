@@ -71,7 +71,9 @@ class Board
     end
 
     def render(status = false)
+
       puts "  1 2 3 4"
+
       a_row = "A"
       b_row = "B"
       c_row = "C"
@@ -82,11 +84,8 @@ class Board
         c_row.concat(" #{cells["C#{column}"].render(status)}")
         d_row.concat(" #{cells["D#{column}"].render(status)}")
       end
-      puts a_row
-      puts b_row
-      puts c_row
-      puts d_row
 
+      output = "#{columns} \n #{a_row} \n#{b_row} \n#{c_row} \n #{d_row}"
     end
 
 end
