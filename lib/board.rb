@@ -4,9 +4,9 @@ class Board
   attr_reader :cells
 
     def initialize
-      # @rows = ["A","B","C","D"]
-      # @columns = [1, 2, 3, 4]
-      @cells = {
+       #@rows = ["A","B","C","D"]
+       @columns = [1, 2, 3, 4]
+       @cells = {
         "A1" => Cell.new("A1"),
         "A2" => Cell.new("A2"),
         "A3" => Cell.new("A3"),
@@ -53,7 +53,7 @@ class Board
       end
       # do ships overlap?
       overlap = @cells.count do |k,v|
-        v.ship != nil
+        ship_coordinates.include?(k) && v.ship != nil
       end
 
       correct_length && valid_coordinates && overlap == 0 &&
@@ -68,6 +68,25 @@ class Board
       else
         nil
       end
+    end
+
+    def render(status = false)
+      puts "  1 2 3 4"
+      a_row = "A"
+      b_row = "B"
+      c_row = "C"
+      d_row = "D"  #"#{cells["A1"].render}
+      @columns.each do |column|
+        a_row.concat(" #{cells["A#{column}"].render(status)}")
+        b_row.concat(" #{cells["B#{column}"].render(status)}")
+        c_row.concat(" #{cells["C#{column}"].render(status)}")
+        d_row.concat(" #{cells["D#{column}"].render(status)}")
+      end
+      puts a_row
+      puts b_row
+      puts c_row
+      puts d_row
+
     end
 
 end
