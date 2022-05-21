@@ -71,13 +71,8 @@ class Board
     end
 
     def render(status = false)
-<<<<<<< HEAD
 
-      puts "  1 2 3 4"
-
-=======
       columns = "  1 2 3 4"
->>>>>>> 67ab7ae3c44bfac0ff1085b9d4107d258fc2f7d9
       a_row = "A"
       b_row = "B"
       c_row = "C"
@@ -89,11 +84,7 @@ class Board
         d_row.concat(" #{cells["D#{column}"].render(status)}")
       end
 
-<<<<<<< HEAD
-      output = "#{columns} \n #{a_row} \n#{b_row} \n#{c_row} \n #{d_row}"
-=======
       output = "#{columns} \n#{a_row} \n#{b_row} \n#{c_row} \n#{d_row} \n"
->>>>>>> 67ab7ae3c44bfac0ff1085b9d4107d258fc2f7d9
     end
 
 end
