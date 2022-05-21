@@ -38,6 +38,8 @@ RSpec.describe Board do
     end
 
     it "can invalidate ship placement (non-consecutive columns)" do
+
+
       expect(board.valid_placement?(cruiser, ["A1", "A2", "A4"])).to be false
       expect(board.valid_placement?(submarine, ["A1", "C1"])).to be false
       expect(board.valid_placement?(cruiser, ["A3", "A2", "A1"])).to be false
@@ -109,4 +111,15 @@ RSpec.describe Board do
     end
 
   end
+
+  describe "board render" do
+    xit 'renders game board' do
+      board = Board.new
+      cruiser = Ship.new("Cruiser", 3)
+      board.place(cruiser, ["A1", "A2", "A3"])
+      expect(board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n")
+      expect(board.render(true)).to eq("1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n")
+    end
+  end
+
 end

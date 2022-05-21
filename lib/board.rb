@@ -1,3 +1,4 @@
+
 class Board
 
   attr_reader :cells
@@ -22,6 +23,7 @@ class Board
         "D2" => Cell.new("D2"),
         "D3" => Cell.new("D3"),
         "D4" => Cell.new("D4")
+
       }
     end
 
@@ -30,6 +32,7 @@ class Board
     end
 
     def valid_placement?(ship, ship_coordinates)
+
       # equal number of coordinates/ship length?
       correct_length = ship_coordinates.length == ship.length
 
