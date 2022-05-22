@@ -32,32 +32,36 @@ class Board
     end
 
     def valid_placement?(ship, ship_coordinates)
-
-      # equal number of coordinates/ship length?
-      correct_length = ship_coordinates.length == ship.length
-
-      coordinate_pairs = ship_coordinates.each_cons(2)
-      # is ship on consecutive rows?
-      consecutive_rows = coordinate_pairs.all? do |pair|
-        pair[0][0] == pair[1][0] &&
-        pair[0][1].to_i + 1 == pair[1][1].to_i
-      end
-      # is ship on consecutive columns?
-      consecutive_columns = coordinate_pairs.all? do |pair|
-        pair[0][0].ord + 1 == pair[1][0].ord &&
-        pair[0][1] == pair[1][1]
-      end
-      # invalid if ship not on board
+      # invalid if not on board
       valid_coordinates = ship_coordinates.all? do |coordinate|
         valid_coordinate?(coordinate)
       end
-      # do ships overlap?
-      overlap = @cells.count do |k,v|
-        ship_coordinates.include?(k) && v.ship != nil
-      end
 
-      correct_length && valid_coordinates && overlap == 0 &&
-      (consecutive_rows || consecutive_columns)
+      if valid_coordinates
+        # equal number of coordinates/ship length?
+        correct_length = ship_coordinates.length == ship.length
+
+        coordinate_pairs = ship_coordinates.each_cons(2)
+        # is ship on consecutive rows?
+        consecutive_rows = coordinate_pairs.all? do |pair|
+          pair[0][0] == pair[1][0] &&
+          pair[0][1].to_i + 1 == pair[1][1].to_i
+        end
+        # is ship on consecutive columns?
+        consecutive_columns = coordinate_pairs.all? do |pair|
+          pair[0][0].ord + 1 == pair[1][0].ord &&
+          pair[0][1] == pair[1][1]
+        end
+        # do ships overlap?
+        overlap = @cells.count do |k,v|
+          ship_coordinates.include?(k) && v.ship != nil
+        end
+
+        correct_length && overlap == 0 &&
+        (consecutive_rows || consecutive_columns)
+      else
+        false
+      end
     end
 
     def place(ship, ship_coordinates)
