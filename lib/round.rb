@@ -1,5 +1,5 @@
 class Round
-
+#'ord' issue relating to board.rb line 47
   def initialize
     @player_board = Board.new
     @computer_board = Board.new
@@ -50,6 +50,7 @@ class Round
     else
       puts @player_board.render(true)
     end
+
   end
 
   def computer_ship_placement
@@ -70,14 +71,22 @@ class Round
 
     player_shot = gets.chomp.upcase
       if @computer_board.valid_coordinate?(player_shot)
+        if @computer_board.cells["#{player_shot}"].fired_upon?
+          puts "Duplicate shot, choose another."
+          player_turn
+        #elsif !@computer_board.valid_coordinate?(player_shot)
+        #  puts "Please enter valid coordinate."
+        #  player_turn
+        else
           @computer_board.cells["#{player_shot}"].fire_upon
-          if @computer_board.cells["#{player_shot}"].ship.sunk?
-            puts "You sunk a ship #{@computer_board.cells["#{player_shot}"].ship.name}"
+          if @computer_board.cells["#{player_shot}"].render == "X"
+            puts "You sunk a #{@computer_board.cells["#{player_shot}"].ship.name}"
           elsif @computer_board.cells["#{player_shot}"].render == "H"
             puts "Your shot on #{player_shot} was a hit."
           elsif @computer_board.cells["#{player_shot}"].render == "M"
             puts "Your shot on #{player_shot} was a miss."
           end
+        end
       else
         puts "Invalid coordinate, try again"
         player_turn
