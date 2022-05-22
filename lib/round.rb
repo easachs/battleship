@@ -74,9 +74,6 @@ class Round
         if @computer_board.cells["#{player_shot}"].fired_upon?
           puts "Duplicate shot, choose another."
           player_turn
-        #elsif !@computer_board.valid_coordinate?(player_shot)
-        #  puts "Please enter valid coordinate."
-        #  player_turn
         else
           @computer_board.cells["#{player_shot}"].fire_upon
           if @computer_board.cells["#{player_shot}"].render == "X"
@@ -107,7 +104,8 @@ class Round
     cruiser_placement
     sub_placement
     computer_ship_placement
-    until (@player_cruiser.sunk? && @player_sub.sunk?) || (@computer_cruiser.sunk? && @computer_sub.sunk?)
+    until (@player_cruiser.sunk? && @player_sub.sunk?) ||
+      (@computer_cruiser.sunk? && @computer_sub.sunk?)
       shows_both_boards
       player_turn
     end
