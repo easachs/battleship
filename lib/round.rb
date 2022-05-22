@@ -8,8 +8,6 @@ class Round
   end
 
   def start
-    @player_ship_count = 2
-    @computer_ship_count = 2
     puts "Welcome to BATTLESHIP\nEnter p to play. Enter q to quit."
     menu_input = gets.chomp.to_s.downcase
     if menu_input == "q"
@@ -120,10 +118,8 @@ class Round
 
   def computer_turn
     computer_shot = @player_board.cells.to_a.sample(1).flatten[0]
-    # past_computer_shots = []
     duplicate_shot = @player_board.cells["#{computer_shot}"].render != "."
     if !duplicate_shot
-      # past_computer_shots << computer_shot
       @player_board.cells["#{computer_shot}"].fire_upon
       if @player_board.cells["#{computer_shot}"].render == "X"
         puts "The computer sunk your #{@player_board.cells["#{computer_shot}"].ship.name}!"
@@ -148,6 +144,11 @@ class Round
     end
   end
 
+  def reset_ship_counts
+    @player_ship_count = 2
+    @computer_ship_count = 2
+  end
+
   def game_steps
     welcome
     cruiser_placement
@@ -160,6 +161,7 @@ class Round
     end
     shows_boards
     results
+    reset_ship_counts
     start
   end
 end
