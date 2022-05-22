@@ -71,6 +71,7 @@ class Board
     end
 
     def render(status = false)
+
       columns = "  1 2 3 4"
       a_row = "A"
       b_row = "B"
