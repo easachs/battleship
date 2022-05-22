@@ -1,8 +1,8 @@
 class Round
 
   def initialize
-    @player_board = nil
-    @computer_board = nil
+    @player_board = Board.new
+    @computer_board = Board.new
     @player_ship_count = 2
     @computer_ship_count = 2
   end
@@ -21,8 +21,6 @@ class Round
   end
 
   def welcome
-    @player_board = Board.new
-    @computer_board = Board.new
     puts "I have laid out my ships on the grid."
     puts "You now need to lay out your two ships."
     puts "The Cruiser is three units long and the Submarine is two units long."
@@ -144,7 +142,9 @@ class Round
     end
   end
 
-  def reset_ship_counts
+  def reset
+    @player_board = Board.new
+    @computer_board = Board.new
     @player_ship_count = 2
     @computer_ship_count = 2
   end
@@ -161,7 +161,7 @@ class Round
     end
     shows_boards
     results
-    reset_ship_counts
+    reset
     start
   end
 end
