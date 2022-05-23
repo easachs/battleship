@@ -41,7 +41,7 @@ class Computer
 
   def player_turn
     puts "Enter the coordinate for your shot:"
-    player_shot = gets.chomp.upcase
+    player_shot = gets.chomp.upcase.strip
     if @computer_board.valid_coordinate?(player_shot)
       if @computer_board.cells["#{player_shot}"].fired_upon?
         puts "You cannot fire upon the same cell twice."
