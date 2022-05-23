@@ -1,8 +1,8 @@
 class Round
 
   def initialize
-    @player_board = Board.new
-    @computer_board = Board.new
+    @player_board = nil
+    @computer_board = nil
     @player_ship_count = 2
     @computer_ship_count = 2
   end
@@ -10,17 +10,37 @@ class Round
   def start
     puts "Welcome to BATTLESHIP\nEnter p to play. Enter q to quit."
     menu_input = gets.chomp.to_s.downcase
-    if menu_input == "q"
+    if menu_input[0] == "q"
       puts "You quit the game."
-    elsif menu_input != "p"
+    elsif menu_input[0] != "p"
       puts "Invalid."
       start
-    elsif menu_input == "p"
+    elsif menu_input[0] == "p"
       game_steps
     end
   end
 
   def welcome
+    puts "Would you like to use the standard board size (4x4)?"
+    board_input = gets.chomp.to_s.downcase
+
+    if board_input[0] == "n"
+      puts "How many rows would you like?"
+      height_input = gets.chomp.to_i
+      puts "How many columns would you like?"
+      width_input = gets.chomp.to_i
+
+      @player_board = Board.new(height_input, width_input)
+      @computer_board = Board.new(height_input, width_input)
+
+    elsif board_input[0] == "y"
+      @player_board = Board.new
+      @computer_board = Board.new
+    else
+      puts "Invalid. Please respond with yes or no."
+      welcome
+    end
+
     puts "I have laid out my ships on the grid."
     puts "You now need to lay out your two ships."
     puts "The Cruiser is three units long and the Submarine is two units long."
@@ -135,16 +155,13 @@ class Round
   def results
     if @computer_ship_count == 0
       puts "Your opponent has no remaining ships. You win!"
-      puts "\n"
     elsif @player_ship_count == 0
       puts "You have no remaining ships. Try again sailor."
-      puts "\n"
     end
+    puts "\n"
   end
 
   def reset
-    @player_board = Board.new
-    @computer_board = Board.new
     @player_ship_count = 2
     @computer_ship_count = 2
   end
