@@ -1,8 +1,16 @@
+require './lib/ship'
+require './lib/cell'
+require './lib/board'
+require './lib/computer'
+
 class Round
+
+  # attr_reader :player_board, :player_ship_count
 
   def initialize
     @player_board = nil
-    @computer_board = nil
+    # @computer_board = nil
+    @computer = Computer.new
     @player_ship_count = 2
     @computer_ship_count = 2
   end
@@ -31,11 +39,13 @@ class Round
       width_input = gets.chomp.to_i
 
       @player_board = Board.new(height_input, width_input)
-      @computer_board = Board.new(height_input, width_input)
+      # @computer_board = Board.new(height_input, width_input)
+      @computer.create_board(height_input, width_input)
 
     elsif board_input[0] == "y"
       @player_board = Board.new
-      @computer_board = Board.new
+      # @computer_board = Board.new
+      @computer.create_board
     else
       puts "Invalid. Please respond with yes or no."
       welcome
@@ -48,31 +58,32 @@ class Round
   end
 
   def computer_placement
-    computer_cruiser = Ship.new("Cruiser", 3)
-    computer_sub = Ship.new("Submarine", 2)
-
-    generated_coordinates = []
-    loop = @computer_board.place(computer_cruiser, generated_coordinates)
-
-    until loop != nil
-      computer_cruiser.length.times do
-        generated_coordinates << @computer_board.cells.to_a.sample(1).flatten[0]
-      end
-
-      loop = @computer_board.place(computer_cruiser, generated_coordinates)
-      generated_coordinates = []
-    end
-
-    loop = @computer_board.place(computer_sub, generated_coordinates)
-
-    until loop != nil
-    computer_sub.length.times do
-        generated_coordinates << @computer_board.cells.to_a.sample(1).flatten[0]
-      end
-
-      loop = @computer_board.place(computer_sub, generated_coordinates)
-      generated_coordinates = []
-    end
+    # computer_cruiser = Ship.new("Cruiser", 3)
+    # computer_sub = Ship.new("Submarine", 2)
+    #
+    # generated_coordinates = []
+    # loop = @computer_board.place(computer_cruiser, generated_coordinates)
+    #
+    # until loop != nil
+    #   computer_cruiser.length.times do
+    #     generated_coordinates << @computer_board.cells.to_a.sample(1).flatten[0]
+    #   end
+    #
+    #   loop = @computer_board.place(computer_cruiser, generated_coordinates)
+    #   generated_coordinates = []
+    # end
+    #
+    # loop = @computer_board.place(computer_sub, generated_coordinates)
+    #
+    # until loop != nil
+    # computer_sub.length.times do
+    #     generated_coordinates << @computer_board.cells.to_a.sample(1).flatten[0]
+    #   end
+    #
+    #   loop = @computer_board.place(computer_sub, generated_coordinates)
+    #   generated_coordinates = []
+    # end
+    @computer.computer_placement
   end
 
   def cruiser_placement
@@ -104,27 +115,50 @@ class Round
 
   def shows_boards
     puts "\n========== COMPUTER BOARD =========="
-    puts @computer_board.render
+    # puts @computer_board.render
+    puts @computer.computer_board.render
     puts "=========== PLAYER BOARD ==========="
     puts @player_board.render(true)
     puts "\n"
   end
 
   def player_turn
+    # puts "Enter the coordinate for your shot:"
+    # player_shot = gets.chomp.upcase
+    # if @computer_board.valid_coordinate?(player_shot)
+    #   if @computer_board.cells["#{player_shot}"].fired_upon?
+    #     puts "You cannot fire upon the same cell twice."
+    #     player_turn
+    #   else
+    #     @computer_board.cells["#{player_shot}"].fire_upon
+    #     if @computer_board.cells["#{player_shot}"].render == "X"
+    #       puts "You sunk a #{@computer_board.cells["#{player_shot}"].ship.name}!"
+    #       @computer_ship_count -= 1
+    #     elsif @computer_board.cells["#{player_shot}"].render == "H"
+    #       puts "Your shot on #{player_shot} was a hit!"
+    #     elsif @computer_board.cells["#{player_shot}"].render == "M"
+    #       puts "Your shot on #{player_shot} was a miss."
+    #     end
+    #   end
+    # else
+    #   puts "Invalid coordinate."
+    #   player_turn
+    # end
+
     puts "Enter the coordinate for your shot:"
     player_shot = gets.chomp.upcase
-    if @computer_board.valid_coordinate?(player_shot)
-      if @computer_board.cells["#{player_shot}"].fired_upon?
+    if @computer.computer_board.valid_coordinate?(player_shot)
+      if @computer.computer_board.cells["#{player_shot}"].fired_upon?
         puts "You cannot fire upon the same cell twice."
         player_turn
       else
-        @computer_board.cells["#{player_shot}"].fire_upon
-        if @computer_board.cells["#{player_shot}"].render == "X"
-          puts "You sunk a #{@computer_board.cells["#{player_shot}"].ship.name}!"
+        @computer.computer_board.cells["#{player_shot}"].fire_upon
+        if @computer.computer_board.cells["#{player_shot}"].render == "X"
+          puts "You sunk a #{@computer.computer_board.cells["#{player_shot}"].ship.name}!"
           @computer_ship_count -= 1
-        elsif @computer_board.cells["#{player_shot}"].render == "H"
+        elsif @computer.computer_board.cells["#{player_shot}"].render == "H"
           puts "Your shot on #{player_shot} was a hit!"
-        elsif @computer_board.cells["#{player_shot}"].render == "M"
+        elsif @computer.computer_board.cells["#{player_shot}"].render == "M"
           puts "Your shot on #{player_shot} was a miss."
         end
       end
@@ -150,6 +184,7 @@ class Round
     else
       computer_turn
     end
+    # @computer.computer_turn
   end
 
   def results
