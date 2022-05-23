@@ -14,7 +14,7 @@ class Round
   def start
     @player = Player.new
     @computer = Computer.new
-    puts "Welcome to BATTLESHIP\nEnter p to play. Enter q to quit."
+    puts "\nWelcome to BATTLESHIP\nEnter p to play. Enter q to quit."
     menu_input = gets.chomp.to_s.downcase
     if menu_input[0] == "q"
       puts "You quit the game."
@@ -54,11 +54,10 @@ class Round
 
   def results
     if @computer.computer_ship_count == 0
-      puts "Your opponent has no remaining ships. You win!"
+      "Your opponent has no remaining ships. You win!"
     elsif @player.player_ship_count == 0
-      puts "You have no remaining ships. Try again sailor."
+      "You have no remaining ships. Try again sailor."
     end
-    puts "\n"
   end
 
   def reset
@@ -78,7 +77,7 @@ class Round
       @player.computer_turn
     end
     shows_boards
-    results
+    puts results
     reset
     start
   end
