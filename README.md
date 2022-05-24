@@ -1,16 +1,16 @@
 
-# Battleship
+# Battleship game
 
 ##### Credits: Eli Sachs & Kevin Ta
 ###### Turing School of Software & Design
 
 
-### Introduction:
+### <font color="yellow">Introduction:</font>
 Welcome players! This game of Battleship was created using Ruby code and is run directly in your terminal command line.
 
 Run `battleship_runner.rb` to begin the game.
 
-### Features & How to play
+### <font color="yellow">Features & How to play</font>
 
 * User is able to specify grid size of game board with a minimum of (4x4) and up to (26x9).
 
@@ -22,9 +22,11 @@ Run `battleship_runner.rb` to begin the game.
 * When either user or computer sinks both ships, game will restart itself to the main menu.
 
 * ###### Game key
-  * Missed shot: "M"
-  * Successful shot: "H"
-  * Sunk ship: "X"
+  * Enter coordinates for ship placement (Ex: A1 B1 C1 )
+  * Fire shot (Ex: D3)
+    * Missed shot: "M"
+    * Successful shot: "H"
+    * Sunk ship: "X"
 
   ##### Screenshots
   ![Blankboard](/Users/kevinta/Desktop/blankboard.jpg "blank8x8")
