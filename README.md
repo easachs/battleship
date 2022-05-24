@@ -25,3 +25,8 @@ Run `battleship_runner.rb` to begin the game.
   * Missed shot: "M"
   * Successful shot: "H"
   * Sunk ship: "X"
+
+  ##### Screenshots
+  ![Blankboard](/Users/kevinta/Desktop/blankboard.jpg "blank8x8")
+
+  ![Image2](/Users/kevinta/Desktop/battleship.jpg "battleship")
