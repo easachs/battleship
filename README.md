@@ -20,3 +20,8 @@ Run `battleship_runner.rb` to begin the game.
 * Game is able to recognize invalid placement of ships on game grid, invalid coordinates from user shots, as well as duplicate shots.
 
 * When either user or computer sinks both ships, game will restart itself to the main menu.
+
+* ###### Game key
+  * Missed shot: "M"
+  * Successful shot: "H"
+  * Sunk ship: "X"
