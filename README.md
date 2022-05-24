@@ -1,20 +1,21 @@
 
 # Battleship game
 
+
 ##### Credits: Eli Sachs & Kevin Ta
 ###### Turing School of Software & Design
 
 
-### <font color="yellow">Introduction:</font>
+### <font color="gree">Introduction:</font>
 Welcome players! This game of Battleship was created using Ruby code and is run directly in your terminal command line.
 
-Run `battleship_runner.rb` to begin the game.
+Run `battleship_runner.rb` located in root of the `battleship` folder to begin the game.
 
-### <font color="yellow">Features & How to play</font>
+### <font color="gree">Features & How to play</font>
 
-* User is able to specify grid size of game board with a minimum of (4x4) and up to (26x9).
+* User will be able to specify grid size of game board with a minimum of (4x4) and up to (26x9).
 
-* Both computer and player will place 2 ships a piece on their game grids.
+* Both computer & player will place 2 ships a piece on their game grids.
   * Cruiser ship(3 length) & Submarine(2 length)
 
 * Game is able to recognize invalid placement of ships on game grid, invalid coordinates from user shots, as well as duplicate shots.
@@ -24,6 +25,7 @@ Run `battleship_runner.rb` to begin the game.
 * ###### Game key
   * Enter coordinates for ship placement (Ex: A1 B1 C1 )
   * Fire shot (Ex: D3)
+  * Grid will display one of the following:
     * Missed shot: "M"
     * Successful shot: "H"
     * Sunk ship: "X"
