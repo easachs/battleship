@@ -1,3 +1,7 @@
+require './lib/ship'
+require './lib/board'
+require './lib/cell'
+
 class Round
 
   def initialize
@@ -22,6 +26,7 @@ class Round
 
   def welcome
     puts "Would you like to use the standard board size (4x4)?"
+    # clarify min / max size for user
     board_input = gets.chomp.to_s.downcase
 
     if board_input[0] == "n"
