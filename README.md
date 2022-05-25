@@ -9,7 +9,7 @@
 ### <font color="gree">Introduction:</font>
 Welcome players! This game of Battleship was created using Ruby code and is run directly in your terminal command line.
 
-Run `battleship_runner.rb` located in root of the `battleship` folder to begin the game.
+Run "ruby `battleship_runner.rb`" located in root of the `battleship` folder to begin the game.
 
 ### <font color="gree">Features & How to play</font>
 
