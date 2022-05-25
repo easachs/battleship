@@ -31,6 +31,5 @@ Run `battleship_runner.rb` located in root of the `battleship` folder to begin t
     * Sunk ship: "X"
 
   ##### Screenshots
-  ![Blankboard](/Users/kevinta/Desktop/blankboard.jpg "blank8x8")
-
-  ![Image2](/Users/kevinta/Desktop/battleship.jpg "battleship")
+  ![battleship](https://user-images.githubusercontent.com/36166420/170162520-e198bf1c-31f7-47b8-b9f6-5c44a3b268f2.jpg)
+  ![blankboard](https://user-images.githubusercontent.com/36166420/170162522-6856a35e-ef99-403c-bd60-43c3c0a1e875.jpg)
